@@ -22,26 +22,36 @@ const getRandomBytes = () =>
 // - understand what getRandomBytes() resolves to
 // - understand how to chain together getRandomBytes
 
-
 // Consider using Promise.all or async/await to improve readability and reduce repetition.
 const return4RandomColors = () => {
-  const colors = []; 
+  const colors = [];
   return getRandomBytes()
     .then((colorArr1) => {
-      colors.push(convertColorsArrToRGB(colorArr1)); // Convert first random color to RGB.
+      // getRandomBytes resolves to a colorArr
+
+      // Convert first random colorArr to RGB.
+      colors.push(convertColorsArrToRGB(colorArr1));
+
+      // Then start getting the next random color array
       return getRandomBytes();
     })
     .then((colorArr2) => {
-      colors.push(convertColorsArrToRGB(colorArr2)); // Convert second random color to RGB.
+      // Convert second random color to RGB.
+      colors.push(convertColorsArrToRGB(colorArr2));
+
       return getRandomBytes();
     })
     .then((colorArr3) => {
-      colors.push(convertColorsArrToRGB(colorArr3)); // Convert third random color to RGB.
+      // Convert third random color to RGB.
+      colors.push(convertColorsArrToRGB(colorArr3));
+
       return getRandomBytes();
     })
     .then((colorArr4) => {
-      colors.push(convertColorsArrToRGB(colorArr4)); // Convert fourth random color to RGB.
-      return colors; // Final array of four RGB colors is returned.
+      // Convert fourth random color to RGB.
+      colors.push(convertColorsArrToRGB(colorArr4));
+      // Final array of four RGB colors is returned.
+      return colors;
     })
     .catch((err) => {
       console.error("An error occurred while generating random colors:", err);
